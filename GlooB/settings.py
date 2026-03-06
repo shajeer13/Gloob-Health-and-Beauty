@@ -24,10 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-u*t6(om)n-(&u$j8k5wm%ukpj5ezgj2^&3nvdk6tjj6ay3^fws'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [' shajeer3137.pythonanywhere.com']
-
+ALLOWED_HOSTS = ['yourusername.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 # Application definition
 INSTALLED_APPS = [
@@ -59,10 +58,11 @@ ROOT_URLCONF = 'GlooB.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # centralized templates folder
-        'APP_DIRS': True,
+        'DIRS': [],  # app-level templates folder ഉപയോഗിച്ചുകൊണ്ടിരിക്കുന്നതിനാൽ ഈ array empty fine
+        'APP_DIRS': True,  # 반드시 True ആകണം
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -70,7 +70,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'GlooB.wsgi.application'
 
 

@@ -1,6 +1,13 @@
 from django.shortcuts import render
-from .models import Product
 
+# Shop page
 def product_list(request):
-    products = Product.objects.all()
-    return render(request, 'product_list.html', {'products': products})
+    return render(request, "product_list.html")
+
+# Cart page
+def cart_page(request):
+    return render(request, "cart.html")
+from django.shortcuts import render
+
+def shop(request):
+    return render(request,'home.html')

@@ -1,18 +1,23 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Order, OrderItem
-from shop_products.models import Product
-from django.contrib.auth.decorators import login_required
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
-@login_required
-def add_to_cart(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    order, created = Order.objects.get_or_create(user=request.user)
-    item, created = OrderItem.objects.get_or_create(order=order, product=product)
-    item.quantity += 1
-    item.save()
-    return redirect('cart')
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('accounts.urls')),           # signup/login
+    path('shop/', include('shop_products.urls')), # shop pages
+]
 
-@login_required
-def cart_view(request):
-    order, created = Order.objects.get_or_create(user=request.user)
-    return render(request, 'orders/cart.html', {'order': order})
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# ഈ ഭാഗം ആവശ്യമില്ല, duplicate ആണ്
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('accounts.urls')),  # signup/login etc.
+    path('shop/', include('shop_products.urls')),  # <--- include shop URLs
+]

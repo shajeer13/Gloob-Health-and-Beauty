@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlooB Shop</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background: linear-gradient(180deg,#ff5fa2,#ff8fb1);
+padding-bottom:90px;
+}
+
+/* TOP BAR */
+.top-bar{
+background: rgba(0,0,0,0.65);
+backdrop-filter: blur(10px);
+padding:10px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:white;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:28px;
+font-weight:800;
+letter-spacing:2px;
+}
+
+/* SEARCH */
+.search-box{
+display:flex;
+align-items:center;
+gap:5px;
+}
+.search-box input{
+border-radius:20px;
+border:none;
+padding:6px 15px;
+width:1200px;
+outline:none;
+}
+.search-btn{
+border-radius:20px;
+border:none;
+padding:6px 12px;
+background:white;
+font-size:18px;
+}
+
+/* PRODUCT CARD */
+.product-card{
+background:white;
+border-radius:25px;
+padding:20px;
+text-align:center;
+margin-bottom:25px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+transition:0.3s;
+}
+.product-card:hover{
+transform:translateY(-5px);
+}
+.product-card img{
+height:160px;
+object-fit:contain;
+margin-bottom:10px;
+}
+.product-title{
+font-size:16px;
+font-weight:600;
+min-height:40px;
+}
+.price{
+font-weight:bold;
+font-size:18px;
+margin:8px 0;
+}
+.add-btn{
+background:linear-gradient(90deg,#2563eb,#ec4899);
+border:none;
+color:white;
+border-radius:30px;
+padding:8px 20px;
+width:100%;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+position:fixed;
+bottom:0;
+width:100%;
+background:white;
+display:flex;
+justify-content:space-around;
+padding:10px 0;
+box-shadow:0 -3px 10px rgba(0,0,0,0.1);
+}
+.bottom-nav a{
+text-align:center;
+font-size:14px;
+color:#555;
+text-decoration:none;
+position:relative;
+}
+.bottom-nav .active{
+color:#ec4899;
+font-weight:600;
+}
+.cart-count{
+position:absolute;
+top:-6px;
+right:12px;
+background:#ec4899;
+color:white;
+border-radius:50%;
+padding:2px 6px;
+font-size:12px;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="logo">GlooB 🌿</div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search products">
+    <button class="search-btn">🔍</button>
+  </div>
+</div>
+
+<!-- PRODUCT LIST -->
+<div class="container mt-4">
+<div class="row" id="productList">
+
+<!-- All 17 products -->
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-19_at_6.19.26_PM_1.jpg">
+    <div class="product-title">Beetroot Lip Balm</div>
+    <div class="price">₹229</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-20_at_5.00.44_PM.jpg">
+    <div class="product-title">Charcoal Face Wash</div>
+    <div class="price">₹349</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-20_at_4.04.58_PM.jpg">
+    <div class="product-title">Coffee Scrub</div>
+    <div class="price">₹299</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-17_at_4.22.25_PM.jpg">
+    <div class="product-title">24K Gold Skin Glow Serum</div>
+    <div class="price">₹399</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsAppImage2026-01-07at6.54.41PM.jpg">
+    <div class="product-title">Anti Ageing Cream</div>
+    <div class="price">₹349</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsAppImage2026-01-07at7.03.38PM.jpg">
+    <div class="product-title">Foot Crack Cream</div>
+    <div class="price">₹399</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsAppImage2025-12-23at2.22.26PM.jpg">
+    <div class="product-title">Korean Beauty Cream</div>
+    <div class="price">₹999</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-22_at_12.07.46_PM.jpg">
+    <div class="product-title">Onion Hair Oil</div>
+    <div class="price">₹349</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-22_at_12.23.10_PM.jpg">
+    <div class="product-title">Onion Shampoo</div>
+    <div class="price">₹299</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsAppImage2025-12-19at7.00.54PM_3.jpg">
+    <div class="product-title">Sunscreen Lotion SPF 50</div>
+    <div class="price">₹549</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsAppImage2025-12-18at11.34.57AM_1.jpg">
+    <div class="product-title">Sunscreen PA++ SPF 50</div>
+    <div class="price">₹499</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsAppImage2026-01-07at6.39.09PM.jpg">
+    <div class="product-title">Hair Growth Serum</div>
+    <div class="price">₹599</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-22_at_1.35.26_PM.jpg">
+    <div class="product-title">Multani Mitti</div>
+    <div class="price">₹149</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-20_at_6.27.24_PM_1.jpg">
+    <div class="product-title">Pure Aloe Vera Gel</div>
+    <div class="price">₹119</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-19_at_4.34.15_PM_1.jpg">
+    <div class="product-title">Strawberry Lip Balm</div>
+    <div class="price">₹229</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-20_at_4.16.22_PM.jpg">
+    <div class="product-title">Ubtan Scrub</div>
+    <div class="price">₹299</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<div class="col-6 col-md-3 product-item">
+  <div class="product-card">
+    <img src="https://www.gloobcare.com/cdn/shop/files/WhatsApp_Image_2025-12-19_at_2.09.49_PM.jpg">
+    <div class="product-title">Under Eye Cream</div>
+    <div class="price">₹299</div>
+    <button class="add-btn add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+    <a href="/">🏠<br>Home</a>
+    <a href="/" class="active">🛍<br>Shop</a>
+    <a href="{% url 'cart' %}">🛒 <span id="cart-count" class="cart-count">0</span><br>Cart</a>
+    <a href="#">👤<br>Profile</a>
+</div>
+
+<script>
+/* CART COUNT AND STORAGE */
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+document.getElementById("cart-count").textContent = cart.reduce((a,b)=>a+b.qty,0);
+
+document.querySelectorAll(".add-to-cart").forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+        let product = {
+            id: index+1,
+            name: document.querySelectorAll(".product-title")[index].innerText,
+            price: parseInt(document.querySelectorAll(".price")[index].innerText.replace("₹","")),
+            image: document.querySelectorAll(".product-card img")[index].src,
+            qty: 1
+        };
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let exist = cart.find(p => p.id === product.id);
+        if(exist) exist.qty +=1;
+        else cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        document.getElementById("cart-count").textContent = cart.reduce((a,b)=>a+b.qty,0);
+        alert("🛒 Product added to your cart!");
+    });
+});
+
+/* SEARCH FUNCTION */
+document.getElementById("searchInput").addEventListener("keyup", function(){
+let value = this.value.toLowerCase();
+document.querySelectorAll(".product-item").forEach(function(product){
+let name = product.innerText.toLowerCase();
+product.style.display = name.includes(value) ? "block" : "none";
+});
+});
+</script>
+
+</body>
+</html>
