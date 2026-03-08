@@ -13,4 +13,7 @@ urlpatterns = [
 
     # Shop page → after login/signup
     path('shop/', account_views.home, name='shop'),
+
+    # Orders URLs → checkout & order history
+    path('orders/', include('orders.urls')),  # <-- ഈ line add ചെയ്യണം
 ]

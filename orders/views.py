@@ -1,23 +1,31 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Order
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),           # signup/login
-    path('shop/', include('shop_products.urls')), # shop pages
-]
+@login_required
+def checkout(request):
+    """Place order from session cart"""
+    cart = request.session.get('cart', [])
+    if not cart:
+        return redirect('home')
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    total = sum(item['price'] * item['qty'] for item in cart)
 
-# ഈ ഭാഗം ആവശ്യമില്ല, duplicate ആണ്
-from django.contrib import admin
-from django.urls import path, include
+    if request.method == 'POST':
+        for item in cart:
+            Order.objects.create(
+                user=request.user,
+                product_name=item['name'],
+                quantity=item['qty'],
+                price=item['price']
+            )
+        request.session['cart'] = []
+        return redirect('order_history')
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),  # signup/login etc.
-    path('shop/', include('shop_products.urls')),  # <--- include shop URLs
-]
+    return render(request, 'orders/checkout.html', {'cart': cart, 'total': total})
+
+@login_required
+def order_history(request):
+    """Show all orders for logged-in user"""
+    orders = Order.objects.filter(user=request.user).order_by('-id')
+    return render(request, 'orders/order_history.html', {'orders': orders})
