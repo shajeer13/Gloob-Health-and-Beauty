@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+</head>
+<body>
+    <h1>Checkout Page</h1>
+    
+    <ul>
+        {% for item in cart %}
+            <li>{{ item.name }} - ₹{{ item.price }} × {{ item.qty }} = ₹{{ item.price|floatformat:2|add:"0"|floatformat }}</li>
+        {% endfor %}
+    </ul>
+
+    <p><strong>Total:</strong> ₹{{ total }}</p>
+
+    <!-- ✅ Place Order button must be inside a POST form -->
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Place Order</button>
+    </form>
+
+    <a href="{% url 'cart' %}">Back to Cart</a>
+</body>
+</html>

@@ -1,19 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
 from accounts import views as account_views
+from shop import views as shop_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # Root URL → Sign Up page
     path('', account_views.signup_view, name='signup'),
-
-    # Accounts URLs → login/signup/cart
     path('accounts/', include('accounts.urls')),
-
-    # Shop page → after login/signup
-    path('shop/', account_views.home, name='shop'),
-
-    # Orders URLs → checkout & order history
-    path('orders/', include('orders.urls')),  # <-- ഈ line add ചെയ്യണം
+    path('shop/', shop_views.shop_index, name='shop'),  # <-- Shop URL
+    path('orders/', include('orders.urls')),
 ]
